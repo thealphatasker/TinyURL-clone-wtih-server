@@ -3,9 +3,14 @@ import { URLs } from "../Models/url.js";
 export const RedirectURL = async (req, res) => {
   const { shortId } = req.params;
   try {
-    const resUrls = await URLs.find({ shortId: shortId });
-    const element = resUrls[0];
+    const element = await URLs.findOne({ shortId: shortId });
     console.log(element);
+
+    if (!element) {
+      return res
+        .status(404)
+        .json({ ok: false, message: "Short URL not found" });
+    }
 
     res.redirect(element.longUrl);
   } catch (err) {

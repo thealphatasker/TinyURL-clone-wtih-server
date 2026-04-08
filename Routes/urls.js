@@ -6,6 +6,7 @@ import { DeleteURL } from "../Controllers/DeleteURL.js";
 
 const router = express.Router();
 
+router.get("/", GetAllURLs);
 router.post("/save", SaveURL);
 router.get("/urls", GetAllURLs);
 router.delete("/urls/:shortId", DeleteURL);

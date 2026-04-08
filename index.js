@@ -4,10 +4,14 @@ import dotenv from "dotenv";
 import { ConnectMongoDb } from "./Utils/mongodb.js";
 import URLRoute from "./Routes/urls.js";
 import { generateShortId } from "./Utils/Keys.js";
+import { connectRedis } from "./Utils/redis.js";
 
 dotenv.config();
 
 const app = express();
+
+// Connect to Redis
+connectRedis();
 
 app.use(
   cors({
